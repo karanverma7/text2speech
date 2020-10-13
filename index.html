@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@600&display=swap" rel="stylesheet">
+    <title>Text To Speech</title>
+    <style>
+        body {
+            margin: 0px;
+            background-image: url(background.jpg);
+            background-position: center;
+            background-size: cover;
+        }
+        #content {
+            margin: 70px auto;
+            height: 500px;
+            width: 400px;
+            background-color: rgba(255,255,255, 0.93);
+            border-radius: 10px;
+            box-shadow: 5px 5px 6px rgba(0,0,0,0.5);
+            
+        }
+        #head {
+            height: 80px;
+            width: 100%;
+            background-color: rgb(111, 145, 190);
+            border-radius: 10px 10px 0px 0px;
+            box-shadow: inset 0px -5px 5px rgba(0,0,0,0.2);
+        }
+        #head p {
+            font-family: 'Sansita Swashed', cursive;
+            text-align: center;
+            font-size: 30px;
+            color: white;
+            text-shadow: 3px 3px 1px rgba(0,0,0,0.3);
+            padding: 20px;
+        }
+        #content #controls {
+            width: 87%;
+            margin: auto;
+        }
+        #content #controls label {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 550;
+        }
+        #content #controls input[type="range"] {
+            width: 100%;
+            margin: auto;
+            margin: 5px 0px 20px 0px;
+            height: 2px;
+        }
+        #content #controls select {
+            width: 100%;
+            height: 35px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 550;
+            margin: 30px 0px 15px 0px;
+            border: none;
+            padding: 0px 5px;
+        }
+        hr {
+            margin-bottom: 20px;
+        }
+        #content #controls textarea {
+            width: 100%;
+            height: 100px;
+            border: none;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        #content #controls textarea:focus {
+            outline-style: none;
+        }
+        #content #controls button {
+            height: 40px;
+            width: 140px;
+            font-family: 'Sansita Swashed', cursive;
+            text-align: center;
+            text-shadow: 2px 2px 1px rgba(0,0,0,0.6);
+            background-color: rgb(111, 145, 190);
+            color: white;
+            border: none;
+            font-size: 17px;
+            margin: 15px 10px 0px 19px;
+            box-shadow: 2px 2px 1px rgba(0,0,0,0.6);
+            cursor: grab;
+            transition: all 0.1s linear;
+            outline-style: none;
+        }
+        #content #controls button:hover {
+            outline-style: none;
+            transform: translateY(2px);
+            background-color: rgb(64, 109, 168);
+        }
+        #credit {
+            color: white;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 60%;
+            padding: 7px 0px;
+            font-weight: 550;
+            filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.9))
+        }
+        @media only screen and (max-width: 600px){
+            #content {
+                transform: scale(0.85) translateX(-20px);
+                margin: auto;
+                padding: 0px;
+            }
+            #credit {
+                width: 100%;
+                bottom: -140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section id="content">
+        <div id="head">
+            <p>Text To Speech</p> 
+        </div>
+        <div id="controls">
+            <select id="voices">
+                <option value="">Select language</option>
+            </select><hr>
+            <label>Rate :</label> <br>
+            <input name="rate" type="range" min="0" max="3" value="1" step="0.1"><br>
+            <label>Pitch :</label> <br>
+            <input name="pitch" type="range" min="0" max="2" step="0.1">
+            <textarea name="text" placeholder="Type Something!"></textarea>
+            <button id="stop">Stop</button>
+            <button id="speak">Speak</button>
+        </div>
+        <div id="credit"> 
+            <svg width="20" height="20" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M232.819 98.333L270.819 47.5H512V0H0V98.333H232.819ZM171.833 34.833H201.833V64.833H171.833V34.833ZM110.292 34.833H140.292V64.833H110.292V34.833ZM48.75 34.833H78.75V64.833H48.75V34.833Z" fill="#F7F7F7"/>
+                <path d="M285.848 77.5L247.848 128.333H0V512H512V77.5H285.848ZM178.337 381.208L157.124 402.421L72.87 318.167L157.124 233.913L178.337 255.126L115.296 318.167L178.337 381.208ZM218.643 434.901L191.358 422.431L292.358 201.431L319.643 213.901L218.643 434.901ZM354.876 402.42L333.663 381.207L396.704 318.166L333.663 255.125L354.876 233.912L439.13 318.166L354.876 402.42Z" fill="#F7F7F7"/>
+            </svg> &nbsp;
+            Developed by Karan Verma
+        </div>
+    </section>
+</body>
+<script>
+    const msg = new SpeechSynthesisUtterance()
+    let voices = []
+    const dropdown = document.querySelector('#voices')
+    const options = document.querySelectorAll('[type="range"], [name="text"]')
+    const stop = document.querySelector('#stop')
+    const speak = document.querySelector('#speak')
+
+    msg.text = document.querySelector('[name="text"]').value
+
+    function setVoice() {
+        msg.voice = voices.find(voice => voice.name === this.value);
+        toggle();
+    }
+    
+    function toggle(startOver = true) {
+        speechSynthesis.cancel();
+        if (startOver) {
+        speechSynthesis.speak(msg);
+        }
+    }
+    function populateDropdown(){
+        voices = this.getVoices();
+
+        dropdown.innerHTML = voices
+            .map(voice => `<option value="${voice.name}">${voice.name} &nbsp; (${voice.lang})</option>`)
+            .join('');
+    }
+    function setOptions(){
+        msg[this.name] = this.value
+        toggle()
+    }
+
+    speechSynthesis.addEventListener('voiceschanged', populateDropdown)
+    dropdown.addEventListener('change', setVoice)
+    options.forEach(option => option.addEventListener('change', setOptions))
+    speak.addEventListener('click', toggle);
+    stop.addEventListener('click', () => toggle(false));
+</script>
+</html>
